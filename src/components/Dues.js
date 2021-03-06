@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardItem, Body, Right, Button} from 'native-base';
 import {StyleSheet, Text} from 'react-native';
 import moment from 'moment'; 
+import { configData } from '../services/ConfigServices';
  
 export default function Dues(props){  
-    const {dues, showModal, index, lastPayment} = props;
+    const {dues, showModal, index} = props;
     // format dates 
     const [latepayment, setLatePayment] = useState(0)
     const date = moment(dues.FechaCuota.seconds * 1000)
@@ -12,13 +13,15 @@ export default function Dues(props){
     const days = date.diff(dateNow, "days")
 
     useEffect(() => {
-        if (dateNow > date) {
-            let latePayment = (dues.BalanceCuota * lastPayment) / 100;
-            const lateP = Math.round(latePayment)
-            setLatePayment(lateP)
-        } else { 
-            setLatePayment(0)
-        }
+        configData().then(resp => { 
+            if (dateNow > date) {
+                let latePayment = (dues.BalanceCuota * resp.porciento_mora) / 100;
+                const lateP = Math.round(latePayment)
+                setLatePayment(lateP)
+            } else { 
+                setLatePayment(0)
+            } 
+        })
     }, [])
 
   

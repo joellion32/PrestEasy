@@ -32,6 +32,7 @@ export default function Capital() {
     }
 
     const validateCapital = () => {
+        console.log(formData)
         Alert.alert(
             "¿Desea confirmar el pago?",
             "",
@@ -133,12 +134,9 @@ export default function Capital() {
 
                         <DatePicker
                             style={{width: '90%', borderColor: '', fontSize: 20}}
-                            defaultDate={new Date()}
-                            locale={"es"}
-                            timeZoneOffsetInMinutes={undefined}
-                            modalTransparent={false}
-                            animationType={"fade"}
-                            androidMode={"default"}
+                            date={formData.date}
+                            mode="date"
+                            format="YYYY-MM-DD"
                             placeHolderText="Fecha de pago"
                             textStyle={{ color: "green" }}
                             placeHolderTextStyle={{ color: "black" }}

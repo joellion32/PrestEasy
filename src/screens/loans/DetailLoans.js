@@ -22,9 +22,6 @@ export default function DetailLoans(props) {
         setDues([])
         getDues()
         storeData("phone", loan.client.phone);
-        configData().then(resp => {
-            setMora(resp.porciento_mora)
-        })
     }, [])
 
     const getDues = () => {
@@ -178,7 +175,7 @@ export default function DetailLoans(props) {
 
                 {
                     dues.map((item, index) => (
-                        <Dues showModal={showModal} key={index} dues={item} lastPayment={Number(mora)} />
+                        <Dues showModal={showModal} key={index} dues={item} />
                     ))
                 }
             </ScrollView>

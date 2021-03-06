@@ -7,12 +7,16 @@ import { DefaultTheme as DefaultThemePaper } from 'react-native-paper';
 import AuthNavigation from './src/navigation/AuthNavigation';
 import DrawerNavigation from './src/navigation/DrawerNavigation';
 import auth from '@react-native-firebase/auth';
+import SplashScreen from 'react-native-splash-screen'
 
 LogBox.ignoreAllLogs();
 
 export default function App() {
   const [user, setUser] = useState(undefined)
 
+  useEffect(() => {
+    SplashScreen.hide();
+  }, [])
 
   //  change navigation menu colors
   DefaultThemePaper.colors.primary = "#fec400";

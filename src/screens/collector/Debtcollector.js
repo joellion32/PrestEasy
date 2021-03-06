@@ -89,12 +89,11 @@ export default function Debtcollector() {
                     <Item style={{ borderColor: 'black' }} picker fixedLabel>
                         <Icon style={{ color: 'black' }} name='calendar' />
                         <DatePicker
+                            mode="date"
+                            format="YYYY-MM-DD"
+                            date={dateI}
                             style={{width: '90%', backgroundColor: '#fec400', fontSize: 20}}
-                            defaultDate={new Date()}
                             locale={"es"}
-                            timeZoneOffsetInMinutes={undefined}
-                            modalTransparent={false}
-                            animationType={"fade"}
                             androidMode={"default"}
                             placeHolderText="Fecha desde"
                             textStyle={{ color: "green" }}
@@ -108,12 +107,9 @@ export default function Debtcollector() {
                         <Icon style={{ color: 'black' }} name='calendar' />
                         <DatePicker
                             style={{width: '90%', backgroundColor: '#fec400', fontSize: 20}}
-                            defaultDate={new Date()} 
-                            locale={"es"}
-                            timeZoneOffsetInMinutes={undefined}
-                            modalTransparent={false}
-                            animationType={"fade"}
-                            androidMode={"default"}
+                            date={dateEnd}
+                            mode="date"
+                            format="YYYY-MM-DD"
                             placeHolderText="Fecha hasta"
                             textStyle={{ color: "green" }}
                             placeHolderTextStyle={{ color: "black" }}
@@ -234,7 +230,7 @@ export function ModalPrint(props) {
                                 <List>
                                     {
                                         collectors.map((item, index) => (
-                                            <ListItem avatar>
+                                            <ListItem key={index} avatar>
                                                 <Body>
                                                     <Text>P# {item.IdPrestamo} {item.NombreCliente} </Text>
                                                     <Text>{moment(item.FechaCobro).format('ll')}</Text>
